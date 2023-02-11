@@ -24,9 +24,10 @@ Route::get('/', function () {
 
 //singl listing
 
-Route::get('/listing/{id}',function($id){
-    return view('list',[
-        'list'=> Listing::find($id)
-    ]);
+Route::get('/listing/{list}',function(Listing $list){
+   return view('list',[
+        'list'=> $list
+    ]); 
+
 });
 
