@@ -1,8 +1,10 @@
 <?php
+use App\Http\Controllers\ListingController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Listing;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,19 +17,14 @@ use App\Models\Listing;
 */
 
 //all listing
-Route::get('/', function () {
-    return view('listing',[
-        'header'=> 'Latest post',
-        'list' => Listing::all()
-    ]);
-});
+Route::get('/',[ListingController::class,'index']);
 
 //singl listing
 
-Route::get('/listing/{list}',function(Listing $list){
-   return view('list',[
-        'list'=> $list
-    ]); 
 
-});
 
+Route::get('/listings/create',[ListingController::class,'create']);
+
+Route::post('/listings',[ListingController::class,'store']);
+
+Route::get('/listing/{list}',[ListingController::class,'show']);
