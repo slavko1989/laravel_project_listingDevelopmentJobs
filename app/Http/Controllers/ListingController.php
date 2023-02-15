@@ -11,7 +11,7 @@ class ListingController extends Controller
 {
     public function index(){
         return view('listings.index',[
-            'list' => Listing::latest()->filter(request(['tag','search']))->get()
+            'list' => Listing::latest()->filter(request(['tag','search']))->simplePaginate(3)
         ]);
     }
 
@@ -36,8 +36,13 @@ class ListingController extends Controller
             'descripton'=>'required'
         ]);
 
+        if($request->hasFile('logo')){
+            $formValid['logo'] = $request->file('logo')->store('logos','public');
+        }
+
         Listing::create($formValid);
-        return redirect('/');
+        
+        return redirect('/')->with('message','Job created successfully');
 
     }
 

@@ -8,7 +8,7 @@
       <i class="fa fa-remove"></i>
     </a>
      @foreach($list as $posts)
-    <img src="/images/logojpg.jpg" style="width:100%;" class="w3-round"><br><br>
+     <img src="{{ $posts->logo ? asset('storage/' . $posts->logo) : asset('images/logojpg.jpg') }}" alt="" style="width:100%"><br><br>
     <h4><b>{{ $posts->created_at }} {{ $posts->title }}</b></h4>
     <p class="w3-text-grey">{{ $posts->descripton }}</p>
   </div>
