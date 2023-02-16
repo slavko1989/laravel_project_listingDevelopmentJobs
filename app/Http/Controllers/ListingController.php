@@ -33,7 +33,8 @@ class ListingController extends Controller
             'website'=>'required',
             'email'=>'required',
             'tags'=>'required',
-            'descripton'=>'required'
+            'descripton'=>'required',
+            'logo'=>'required|mimes:jpg,png,gif,jpeg,svg'
         ]);
 
         if($request->hasFile('logo')){
@@ -43,6 +44,40 @@ class ListingController extends Controller
         Listing::create($formValid);
         
         return redirect('/')->with('message','Job created successfully');
+
+    }
+
+    public function edit(Listing $listing){
+            return view('listings.edit',['listing'=>$listing]);
+    }
+
+    public function update(Request $request, Listing $listing){
+
+          $formValid = $request->validate([
+            'title'=>'required',
+            'company'=>'required',
+            'location'=>'required',
+            'website'=>'required',
+            'email'=>'required',
+            'tags'=>'required',
+            'descripton'=>'required',
+            'logo'=>'mimes:jpg,png,gif,jpeg,svg'
+        ]);
+
+        if($request->hasFile('logo')){
+            $formValid['logo'] = $request->file('logo')->store('logos','public');
+        }
+
+        $listing->update($formValid);
+        
+        return back()->with('message','Job updated successfully');
+
+    }
+
+    public function destroy(Listing $listing){
+
+        $listing->delete();
+        return redirect('/')->with('message','Job delete successfully');
 
     }
 
