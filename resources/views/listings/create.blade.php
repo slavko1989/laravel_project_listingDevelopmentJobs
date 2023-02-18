@@ -1,7 +1,6 @@
 @include('bootstrap_section._head')
-@include('bootstrap_section._nav')
 <div class="container" style="background-color: red;border-radius: 7px;margin-top: 7px;">
-  <h2 style="text-align: center;">Create new job</h2>
+  <h2 style="text-align: center; font-family: monospace;"><a href="/" class="btn btn-warning">GO BACK</a> Create new job</h2>
   <form action="/listings" method="POST"  enctype="multipart/form-data">
     @csrf
     <div class="form-group">
