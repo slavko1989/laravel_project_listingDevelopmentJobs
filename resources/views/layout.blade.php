@@ -2,11 +2,7 @@
 @include('bootstrap_section._nav')
 @include('bootstrap_section._header')
 <h1 style="font-family: fantasy;font-weight: bolder;color: sandybrown;text-align: center;">Job post
-@if(session()->has('message'))
-<div class="alert alert-success" x-data="{show:true}" x-init="setTimeout(()=>show - false,3000)" x-show="show">
-	<p style="color: green;">{{ session('message') }}</p>
-</div>
-@endif
+
 </h1>
 @yield('content')
 

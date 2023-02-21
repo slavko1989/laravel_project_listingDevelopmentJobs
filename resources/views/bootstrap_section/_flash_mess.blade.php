@@ -1,7 +1,8 @@
 @if(session()->has('message'))
-
-<div class="alert alert-success">
-	<strong>{{ session('message') }}</strong>
-</div>
-
+	<p class="mess" style="text-align: center;margin-top: 10px;">{{ session('message') }}</p>
 @endif
+<script type="text/javascript">
+setTimeout(function(){ 
+$('.mess').hide(); 
+}, 3000);
+</script> 

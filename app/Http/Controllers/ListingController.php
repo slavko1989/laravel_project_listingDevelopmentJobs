@@ -41,6 +41,8 @@ class ListingController extends Controller
             $formValid['logo'] = $request->file('logo')->store('logos','public');
         }
 
+        $formValid['user_id'] = auth()->id();
+
         Listing::create($formValid);
         
         return redirect('/')->with('message','Job created successfully');
@@ -78,6 +80,12 @@ class ListingController extends Controller
 
         $listing->delete();
         return redirect('/')->with('message','Job delete successfully');
+
+    }
+
+    public function menage(){
+
+        return view('listings.menage',['listings'=>auth()->user()->listings()->get()]);
 
     }
 

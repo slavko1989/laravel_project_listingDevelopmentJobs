@@ -7,7 +7,7 @@
     <div class="form-group">
       <label for="pwd">Email:</label>
       <input type="text" class="form-control" id="pwd" placeholder="Enter email" name="email" value="{{ old('email') }}">
-      @error('e,ail')
+      @error('email')
       <p style="color: black;">{{ $message }}</p>
       @enderror
     </div>
